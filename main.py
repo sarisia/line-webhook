@@ -21,8 +21,8 @@ async def post_callback(request):
     data = await request.json()
     # TODO: validate
 
-    for event in data['events'] and event['type'] == 'join':
-        if event['source']['type'] in ['group', 'room']:
+    for event in data['events']:
+        if event['type'] == 'join' and event['source']['type'] in ['group', 'room']:
             ret = unique.register(event['source']['groupId'])
             if ret:
                 print(f'New hook created: {ret}')
