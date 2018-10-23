@@ -65,8 +65,7 @@ if __name__ == '__main__':
     runner = web.AppRunner(app, handle_signals=True)
     loop.run_until_complete(runner.setup())
 
-    #site = web.UnixSite(runner, config.get('socket'))
-    site = web.TCPSite(runner, "0.0.0.0", 4433)
+    site = web.UnixSite(runner, config.get('socket'))
 
     loop.run_until_complete(site.start())
     print(f'Server started in {site.name}')
