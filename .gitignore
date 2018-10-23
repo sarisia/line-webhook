@@ -1,0 +1,5 @@
+*.pyc
+__pycache__
+
+/config/config.json
+/config/unique.json
