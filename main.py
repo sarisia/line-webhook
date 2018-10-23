@@ -12,7 +12,7 @@ session = ClientSession()
 config = Config(__file__)
 unique = Unique(__file__)
 
-@routes.get('/status')
+@routes.get('/')
 async def get_root(request):
     return web.Response(text='LINE Adapter')
 
