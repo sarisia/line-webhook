@@ -50,11 +50,10 @@ async def post_unique(request):
         ]
     }
 
-    async with session:
-        async with session.post(API_DEST, headers=headers, json=payload) as res:
-            if not res.status == 200:
-                err = await res.json()
-                print(f'{res.status}: {err.get("message")}')
+    async with session.post(API_DEST, headers=headers, json=payload) as res:
+        if not res.status == 200:
+            err = await res.json()
+            print(f'{res.status}: {err.get("message")}')
 
     return web.json_response()
 
