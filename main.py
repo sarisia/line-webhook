@@ -64,10 +64,13 @@ if __name__ == '__main__':
     runner = web.AppRunner(app, handle_signals=True)
     loop.run_until_complete(runner.setup())
 
-    site = web.UnixSite(runner, config.get('socket'))
+    sites = []
+    sites.append(web.UnixSite(runner, config.get('socket')))
+    sites.append(web.TCPSite(runner, "0.0.0.0", config.get('port')))
 
-    loop.run_until_complete(site.start())
-    print(f'Server started in {site.name}')
+    for site in sites:
+        loop.run_until_complete(site.start())
+        print(f'Server started in {site.name}')
 
     try:
         loop.run_forever()
